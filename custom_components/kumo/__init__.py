@@ -115,6 +115,7 @@ async def async_kumo_setup(hass: HomeAssistant, prefer_cache: bool, username: st
         account = pykumo.KumoCloudAccount(username, password, kumo_dict=cached_json)
     else:
         account = pykumo.KumoCloudAccount(username, password)
+        account._url = "https://mesca-prod.kumocloud.com/login"
 
     setup_success = await hass.async_add_executor_job(account.try_setup)
 

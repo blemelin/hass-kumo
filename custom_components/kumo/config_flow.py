@@ -36,6 +36,7 @@ async def validate_input(hass: core.HomeAssistant, data):
     Data has the keys from DATA_SCHEMA with values provided by the user.
     """
     account = KumoCloudAccount(data["username"], data["password"])
+    account._url = "https://mesca-prod.kumocloud.com/login"
     try:
         result = await hass.async_add_executor_job(account.try_setup)
     except ConnectionError:
@@ -67,6 +68,7 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 account = KumoCloudAccount(
                     user_input["username"], user_input["password"]
                 )
+                account._url = "https://mesca-prod.kumocloud.com/login"
                 await self.hass.async_add_executor_job(account.try_setup)
                 self.kumo_cache = await self.hass.async_add_executor_job(
                     account.get_raw_json
