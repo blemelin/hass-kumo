@@ -17,7 +17,7 @@ def main():
     username = input("KumoCloud username:")
     password = getpass.getpass(prompt="KumoCloud password:")
 
-    url = "https://app.kumocloud.com/login"
+    url = "https://mesca-prod.kumocloud.com/login"
     headers = {
         "Accept": "application/json, text/plain, */*",
         "Accept-Encoding": "gzip, deflate, br",
